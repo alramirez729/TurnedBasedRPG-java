@@ -7,6 +7,7 @@ public class TextRPGGame {
 
         // print welcome message with ASCII art
         // print welcome message with ASCII art
+        // no ASCII ART
         JTextArea textArea = new JTextArea();
 
         textArea.append("Welcome to Text Battle!\n\n");
