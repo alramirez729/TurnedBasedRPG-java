@@ -1,4 +1,6 @@
-public abstract class PlayerCharacter implements Healable
+package com.rpgbattle;
+
+public abstract class Character 
 {
    private int maxHP;
    private int currentHP;
@@ -7,7 +9,7 @@ public abstract class PlayerCharacter implements Healable
    
      
 
-   public PlayerCharacter( int maxH, int currentH, int stren, String nombre )
+   public Character( int maxH, int currentH, int stren, String nombre )
    {
       maxHP = ( maxH < 1 ) ? 1 : maxH;
       currentHP = ( currentH < 1 ) ? 1 : currentH;
@@ -50,19 +52,20 @@ public abstract class PlayerCharacter implements Healable
       return strength;
    } 
 
-   public int swing()
+   public void attack(Character d)
    {
-    return 0;
+
    }
-   // return String representation of Employee object
+   
    public String toString()
    {
       return String.format( "%d/%d HP max", 
          getCurrentHP(), getMaxHP()) ;
-   } // end method toString
+   } 
 
-   
-  // public abstract double earnings(); // no implementation here
-   // Note: We do not implement Payable method getPaymentAmount here so 
-   // this class must be declared abstract to avoid a compilation error.
-} // end abstract class Employee
+   public void move(Character[] allies, Character[] enemies)
+   {
+
+   }
+  
+} 
