@@ -1,23 +1,13 @@
+package com.rpgbattle;
 import java.util.Random;
+import java.util.Scanner;
 
-public class Warlock extends PlayerCharacter implements DamageCaster
+public class Warlock extends Character implements DamageCaster
 {
-    private int maxHP;
-    private int currentHP;
-    private int strength;
     private int currentMP;
     private int maxMP;
     private int intelligence;
-    private String name;
-
-    public String getName() {
-        return name;
-    }
-  
-    public void setName(String name) {
-        this.name = name;
-    }
-
+    
     public int getIntelligence() {
     return intelligence;
 }
@@ -25,32 +15,7 @@ public class Warlock extends PlayerCharacter implements DamageCaster
     public void setIntelligence(int intelligence) {
     this.intelligence = intelligence;
 }
-   
-    public int getMaxHP() {
-        return maxHP;
-    }
-
-    public void setMaxHP(int maxHP) {
-        this.maxHP = maxHP;
-    }
-
-    public int getCurrentHP() {
-        return currentHP;
-    }
-
-    public void setCurrentHP(int currentHP) {
-        this.currentHP = ( currentHP < 1 ) ? 0 : currentHP;
-        //this.currentHP = ( currentHP < 1 && currentHP > getMaxHP() ) ? 0 : currentHP;
-    }
-
-    public int getStrength() {
-        return strength;
-    }
-
-    public void setStrength(int strength) {
-        this.strength = strength;
-    }
-
+  
     public int getCurrentMP() {
         return currentMP;
     }
@@ -71,69 +36,34 @@ public class Warlock extends PlayerCharacter implements DamageCaster
    
    public Warlock()
    {
-    super(250, 250, 70, "Warlock");
-    maxHP = 250;
-    currentHP = 250;
-    strength = 70;
+    super(250, 250, 9, "Warlock");
     maxMP = 100;
     currentMP = 100;
-    intelligence = 100;
-    name = "Warlock";
+    intelligence = 33;
+    
 
    }
    public Warlock( int maxH, int currentH, int maxM, int currentM, int stren, int intel, String nombre)
    {
       super(maxH, currentH, stren, nombre);
-      maxHP = maxH;
-      currentHP = currentH;
-      strength = stren;
       maxMP = ( maxH < 20 ) ? 20 : maxM;
       currentMP = ( currentM < 0 ) ? 0 : currentM;
       intelligence = ( intel < 1 ) ? 1 : intel;
-      name = nombre;
    } 
 
-   @Override
-   public void beHealed(int heal){
-       if (getCurrentHP()!=0)
-       {
-       int FixedHeal = ( heal + getCurrentHP() >= getMaxHP() ) ? getMaxHP() : heal; 
-       setCurrentHP(FixedHeal);
-       System.out.printf("\n%s received healing!", getName());
-       }
-       else
-       {
-        System.out.printf("\n%s is dead and cannot be healed.", getName());
-       }
-   } //this method is how much an enemy would receive, and will need to be done again for each enemy
-   
-    @Override
-   public int castThunder(){
-      // if (getCurrentMP()>=20)
-   // {
-      // setCurrentMP(getCurrentMP()-20);  
-       int thunder;
-       Random rand = new Random();
-       thunder=(int) ((20-(rand.nextInt(4)))*getIntelligence()*0.33);
-       return thunder;
-    //}
-   // else
-   // {
-    //    System.out.println(""); 
-     //   System.out.print("Warlock needs 20 MP to cast Thunder!"); 
-   // }  
-     //  return 0;  
-   } //this method is how much an enemy would receive, and will need to be done again for each enemy
-
-   public void toThunder(  PlayerCharacter[] enemies)
+@Override
+   public void thunder(  Character[] enemies)
     {
         if (getCurrentMP()>=20)
     {
        System.out.printf("\n%s casts Thunder on all enemies!", getName());
        setCurrentMP(getCurrentMP()-20);  
-       for ( PlayerCharacter currentEnemy : enemies )
+       for ( Character currentEnemy : enemies )
        {
-        currentEnemy.setCurrentHP(currentEnemy.getCurrentHP()-this.castThunder());
+        int thunder;
+        Random rand = new Random();
+        thunder=(int) ((20-(rand.nextInt(4)))*getIntelligence());
+        currentEnemy.setCurrentHP(currentEnemy.getCurrentHP()-thunder);
         System.out.printf("%s", currentEnemy.toString());
        }
     }
@@ -141,25 +71,21 @@ public class Warlock extends PlayerCharacter implements DamageCaster
        {
         System.out.printf("\n%s needs 20 MP to cast Thunder!", getName()); 
        }  
+       System.out.println();
     }
       
     
-   @Override
-   public int swing()
-   {
-       int hit;
-       Random rand = new Random();
-       hit=(int) ((10-(rand.nextInt(4)))*getStrength()*0.13);
-       return hit;
-   } // this is math to swing against one person
+    @Override
+    public void attack(  Character d)
+     {
+        int hit;
+        Random rand = new Random();
+        hit=(int) ((10-(rand.nextInt(4)))*getStrength());
+        d.setCurrentHP(d.getCurrentHP()-hit);
+        System.out.printf("\n%s attacks %s for %d damage! %s", getName(), d.getName(), hit, d.toString());
+     }
 
-   public void toSwing(  PlayerCharacter d)
-    {
-      System.out.printf("\n%s takes a swing!", getName());
-      d.setCurrentHP(d.getCurrentHP()-this.swing());
-    }
 
-   // return String representation of CommissionEmployee object
    @Override
    public String toString()
    {
@@ -167,5 +93,28 @@ public class Warlock extends PlayerCharacter implements DamageCaster
          getName(), super.toString(), 
          getCurrentMP(), getMaxMP()); 
         
-   } // end method toString
-} // end class 
+   } 
+
+   @Override
+   public void move(Character[] allies, Character[] enemies)
+   {
+        Scanner input = new Scanner(System.in);
+        System.out.println("\n1. Fight");
+        System.out.println("2. Thunder");
+        System.out.print("Choice: ");
+        int choice = input.nextInt();
+        switch (choice) {
+            case 1: // Fight
+                System.out.print("\nHere are the enemies to fight:");
+                for (int i = 0; i < enemies.length; i++)
+                   System.out.printf("%s (Enter %d to attack)", enemies[i].toString(), i+1);
+                System.out.print("\nWhich one do you want to fight?");
+                int en = input.nextInt()-1;   
+                attack(enemies[en]);
+
+                break;
+            case 2: 
+                thunder(enemies);
+        } // end switch
+    }
+   }
