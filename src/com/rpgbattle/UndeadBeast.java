@@ -1,5 +1,6 @@
 package com.rpgbattle;
 import java.util.Random;
+import com.rpgbattle.Character;
 
 public class UndeadBeast extends Character
 {

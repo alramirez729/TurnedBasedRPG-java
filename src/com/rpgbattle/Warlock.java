@@ -1,6 +1,8 @@
 package com.rpgbattle;
 import java.util.Random;
 import java.util.Scanner;
+import com.rpgbattle.Character;
+import com.rpgbattle.DamageCaster;
 
 public class Warlock extends Character implements DamageCaster
 {

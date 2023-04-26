@@ -1,6 +1,7 @@
 package com.rpgbattle;
 import java.util.Random;
 import java.util.Scanner;
+import com.rpgbattle.Character;
 
 public class Fighter extends Character
 {

@@ -11,9 +11,9 @@ public abstract class Character
 
    public Character( int maxH, int currentH, int stren, String nombre )
    {
-      maxHP = ( maxH < 1 ) ? 1 : maxH;
-      currentHP = ( currentH < 1 ) ? 1 : currentH;
-      strength = ( stren < 1 ) ? 1 : stren;
+      maxHP = Math.max(maxH, 1);
+      currentHP = Math.max(currentH, 1);
+      strength = Math.max(stren, 1);
       name = nombre;
    } 
 
