@@ -1,6 +1,5 @@
 package com.rpgbattle;
 
-import java.util.Random;
 import java.util.Scanner;
 
 import com.rpgbattle.Character;
@@ -10,6 +9,21 @@ public class Cleric extends Character implements HealCaster {
     private int currentMP;
     private int maxMP;
     private int intelligence;
+
+    public Cleric() {
+        super(250, 250, 9, "Cleric");
+        maxMP = 100;
+        currentMP = 100;
+        intelligence = 33;
+
+    }
+
+    public Cleric(int maxH, int currentH, int maxM, int currentM, int stren, int intel, String nombre) {
+        super(maxH, currentH, stren, nombre);
+        maxMP = (maxH < 20) ? 20 : maxM;
+        currentMP = (currentM < 0) ? 0 : currentM;
+        intelligence = (intel < 1) ? 1 : intel;
+    }
 
     public int getIntelligence() {
         return intelligence;
@@ -35,21 +49,6 @@ public class Cleric extends Character implements HealCaster {
         this.maxMP = maxMP;
     }
 
-    public Cleric() {
-        super(250, 250, 9, "Cleric");
-        maxMP = 100;
-        currentMP = 100;
-        intelligence = 33;
-
-    }
-
-    public Cleric(int maxH, int currentH, int maxM, int currentM, int stren, int intel, String nombre) {
-        super(maxH, currentH, stren, nombre);
-        maxMP = (maxH < 20) ? 20 : maxM;
-        currentMP = (currentM < 0) ? 0 : currentM;
-        intelligence = (intel < 1) ? 1 : intel;
-    }
-
     @Override
     public void heal(com.rpgbattle.Character[] allies) {
         if (getCurrentMP() >= 20) {
@@ -57,14 +56,12 @@ public class Cleric extends Character implements HealCaster {
             setCurrentMP(getCurrentMP() - 20);
             for (Character currentAlly : allies) {
                 if (currentAlly.getCurrentHP() != 0) {
-                    int heal;
-                    Random rand = new Random();
-                    heal = (int) ((20 - (rand.nextInt(4))) * getIntelligence());
+                    int heal = (int) ((20 - (this.random.nextInt(4))) * getIntelligence());
                     int FixedHeal = (heal + currentAlly.getCurrentHP() >= currentAlly.getMaxHP()) ? currentAlly.getMaxHP() : heal;
                     currentAlly.setCurrentHP(FixedHeal);
-                    System.out.printf("%s", currentAlly.toString());
+                    System.out.printf("%s", currentAlly);
                 } else {
-                    System.out.printf("\n%s is dead and cannot be healed.", currentAlly.getName());
+                    System.out.printf("\n%s is dead and cannot be healed.", getName());
                 }
             }
         } else {
@@ -76,17 +73,14 @@ public class Cleric extends Character implements HealCaster {
     @Override
     public void attack(Character d) {
         int hit;
-        Random rand = new Random();
-        hit = (int) ((10 - (rand.nextInt(4))) * getStrength());
+        hit = (int) ((10 - (this.random.nextInt(4))) * getStrength());
         d.setCurrentHP(d.getCurrentHP() - hit);
-        System.out.printf("\n%s attacks %s for %d damage! %s", getName(), d.getName(), hit, d.toString());
+        System.out.printf("\n%s attacks %s for %d damage! %s", getName(), getName(), hit, d);
     }
 
     @Override
     public String toString() {
-        return String.format("\n%s: %s, %d/%d MP max",
-                getName(), super.toString(),
-                getCurrentMP(), getMaxMP());
+        return String.format("\n%s: %s, %d/%d MP max", getName(), super.toString(), getCurrentMP(), getMaxMP());
 
     }
 

@@ -1,71 +1,64 @@
 package com.rpgbattle;
 
-public abstract class Character 
-{
-   private int maxHP;
-   private int currentHP;
-   private int strength;
-   private String name;
-   
-     
+import java.util.Random;
 
-   public Character( int maxH, int currentH, int stren, String nombre )
-   {
-      maxHP = Math.max(maxH, 1);
-      currentHP = Math.max(currentH, 1);
-      strength = Math.max(stren, 1);
-      name = nombre;
-   } 
+public abstract class Character {
+    protected Random random;
+    private int maxHP;
+    private int currentHP;
+    private int strength;
+    private String name;
 
-   public String getName() {
-      return name;
-  }
+    public Character(int maxH, int currentH, int strength, String name) {
+        maxHP = Math.max(maxH, 1);
+        currentHP = Math.max(currentH, 1);
+        this.strength = Math.max(strength, 1);
+        this.name = name;
+        random = new Random();
+    }
 
-  public void setName(String name) {
-      this.name = name;
-  }
-   public void setMaxHP( int max )
-   {
-      maxHP = max;
-   } 
-   public int getMaxHP()
-   {
-      return maxHP;
-   } 
-   public void setCurrentHP( int current )
-   {
-      currentHP = ( current < 1 ) ? 0 : current;
-   }
+    public String getName() {
+        return name;
+    }
 
-   public int getCurrentHP()
-   {
-      return currentHP;
-   } 
+    public void setName(String name) {
+        this.name = name;
+    }
 
-   public void setStrength( int stren )
-   {
-      strength = stren; 
-   } 
+    public int getMaxHP() {
+        return maxHP;
+    }
 
-   public int getStrength()
-   {
-      return strength;
-   } 
+    public void setMaxHP(int max) {
+        maxHP = max;
+    }
 
-   public void attack(Character d)
-   {
+    public int getCurrentHP() {
+        return currentHP;
+    }
 
-   }
-   
-   public String toString()
-   {
-      return String.format( "%d/%d HP max", 
-         getCurrentHP(), getMaxHP()) ;
-   } 
+    public void setCurrentHP(int current) {
+        currentHP = (current < 1) ? 0 : current;
+    }
 
-   public void move(Character[] allies, Character[] enemies)
-   {
+    public int getStrength() {
+        return strength;
+    }
 
-   }
-  
+    public void setStrength(int stren) {
+        strength = stren;
+    }
+
+    public void attack(Character d) {
+
+    }
+
+    public String toString() {
+        return String.format("%d/%d HP max", getCurrentHP(), getMaxHP());
+    }
+
+    public void move(Character[] allies, Character[] enemies) {
+
+    }
+
 } 

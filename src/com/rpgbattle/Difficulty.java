@@ -1,16 +1,10 @@
 public enum Difficulty {
-    Easy(1),
-    Medium(1.2),
-    Hard(1.5);
+    Easy(1), Medium(1.2), Hard(1.5);
 
     private final double multiplier;
 
-    private Difficulty(double multiplier) {
+    Difficulty(double multiplier) {
         this.multiplier = multiplier;
-    }
-
-    public double getMultiplier() {
-        return multiplier;
     }
 
     public static Difficulty get(String difficulty) {
@@ -20,5 +14,9 @@ public enum Difficulty {
             case "hard" -> Hard;
             default -> null;
         };
+    }
+
+    public double getMultiplier() {
+        return multiplier;
     }
 }
