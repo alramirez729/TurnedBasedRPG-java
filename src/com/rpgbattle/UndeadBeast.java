@@ -14,7 +14,7 @@ public class UndeadBeast extends Character {
 
     @Override
     public void attack(Character d) {
-        int hit = (int) ((10 - (this.random.nextInt(4))) * getStrength());
+        int hit = (10 - (this.random.nextInt(4))) * getStrength();
         d.setCurrentHP(d.getCurrentHP() - hit);
         System.out.printf("\n%s attacks %s for %d damage! %s", getName(), getName(), hit, d);
     }

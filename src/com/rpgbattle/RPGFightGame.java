@@ -1,6 +1,5 @@
 package com.rpgbattle;
 
-import java.util.InputMismatchException;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -8,7 +7,6 @@ import com.rpgbattle.Fighter;
 import com.rpgbattle.Warlock;
 import com.rpgbattle.Cleric;
 import com.rpgbattle.RedMage;
-import com.rpgbattle.Character;
 import com.rpgbattle.UndeadBeast;
 import com.rpgbattle.Character;
 
@@ -33,12 +31,10 @@ public class RPGFightGame {
 
     public static void toStringEnemies(Character[] enemies) {
         System.out.print("\nEnemies:");
-        for (int i = 0; i < enemies.length; i++)
-            System.out.printf("%s", enemies[i].toString());
+        for (Character enemy : enemies) System.out.printf("%s", enemy.toString());
     }
 
     public static void main(String[] args) {
-        Scanner input = new Scanner(System.in);
 
         Character[] allies = new Character[4];
 
@@ -72,7 +68,7 @@ public class RPGFightGame {
             do {
                 for (Character currentAlly : allies) {
                     if (currentAlly.getCurrentHP() != 0) {
-                        System.out.printf("%s (choose a move)", currentAlly.toString());
+                        System.out.printf("%s (choose a move)", currentAlly);
                         currentAlly.move(allies, enemies);
                         if ((didEnemiesSurvive(enemies))) {
                             playerDefeatedAWave();

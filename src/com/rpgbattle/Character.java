@@ -3,7 +3,7 @@ package com.rpgbattle;
 import java.util.Random;
 
 public abstract class Character {
-    protected Random random;
+    protected final Random random;
     private int maxHP;
     private int currentHP;
     private int strength;

@@ -1,6 +1,5 @@
 package com.rpgbattle;
 
-import java.util.Random;
 import java.util.Scanner;
 
 import com.rpgbattle.Character;
@@ -21,8 +20,8 @@ public class Warlock extends Character implements DamageCaster {
     public Warlock(int maxH, int currentH, int maxM, int currentM, int strength, int intel, String name) {
         super(maxH, currentH, strength, name);
         maxMP = (maxH < 20) ? 20 : maxM;
-        currentMP = (currentM < 0) ? 0 : currentM;
-        intelligence = (intel < 1) ? 1 : intel;
+        currentMP = Math.max(currentM, 0);
+        intelligence = Math.max(intel, 1);
     }
 
     public int getIntelligence() {
