@@ -49,9 +49,7 @@ public abstract class Character {
         strength = stren;
     }
 
-    public void attack(Character d) {
-
-    }
+    public abstract void attack(Character d);
 
     public String toString() {
         return String.format("%d/%d HP max", getCurrentHP(), getMaxHP());
