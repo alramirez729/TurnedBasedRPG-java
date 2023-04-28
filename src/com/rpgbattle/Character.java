@@ -45,8 +45,8 @@ public abstract class Character {
         return strength;
     }
 
-    public void setStrength(int stren) {
-        strength = stren;
+    public void setStrength(int strength) {
+        this.strength = strength;
     }
 
     public abstract void attack(Character d);

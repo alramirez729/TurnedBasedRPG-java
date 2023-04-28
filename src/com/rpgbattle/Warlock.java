@@ -18,8 +18,8 @@ public class Warlock extends Character implements DamageCaster {
         intelligence = 33;
     }
 
-    public Warlock(int maxH, int currentH, int maxM, int currentM, int stren, int intel, String nombre) {
-        super(maxH, currentH, stren, nombre);
+    public Warlock(int maxH, int currentH, int maxM, int currentM, int strength, int intel, String name) {
+        super(maxH, currentH, strength, name);
         maxMP = (maxH < 20) ? 20 : maxM;
         currentMP = (currentM < 0) ? 0 : currentM;
         intelligence = (intel < 1) ? 1 : intel;

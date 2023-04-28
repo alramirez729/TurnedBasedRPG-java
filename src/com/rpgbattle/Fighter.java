@@ -10,8 +10,8 @@ public class Fighter extends Character {
         super(250, 250, 21, "Fighter");
     }
 
-    public Fighter(int maxH, int currentH, int stren, String nombre) {
-        super(maxH, currentH, stren, nombre);
+    public Fighter(int maxH, int currentH, int strength, String name) {
+        super(maxH, currentH, strength, name);
     }
 
     @Override
