@@ -26,7 +26,13 @@ public class UndeadBeast extends Character {
 
     @Override
     public void move(Character[] allies, Character[] enemies) {
-        attack(allies[this.random.nextInt(4)]);
+        while (true) {
+            int ally = this.random.nextInt(allies.length);
+            if (allies[ally].getCurrentHP() != 0) {
+                attack(allies[ally]);
+                break;
+            }
+        }
     }
 }
 
