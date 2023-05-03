@@ -55,8 +55,5 @@ public abstract class Character {
         return String.format("%d/%d HP max", getCurrentHP(), getMaxHP());
     }
 
-    public void move(Character[] allies, Character[] enemies) {
-
-    }
-
-} 
+    public abstract void move(Character[] allies, Character[] enemies);
+}
