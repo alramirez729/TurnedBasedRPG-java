@@ -51,6 +51,10 @@ public abstract class Character {
 
     public abstract void attack(Character d);
 
+    public boolean isDead() {
+        return getCurrentHP() == 0;
+    }
+
     public String toString() {
         return String.format("%d/%d HP max", getCurrentHP(), getMaxHP());
     }
