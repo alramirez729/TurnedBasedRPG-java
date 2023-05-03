@@ -1,27 +1,21 @@
 package com.rpgbattle;
 
+import java.io.PrintStream;
 import java.util.Random;
 import java.util.Scanner;
+import com.rpgbattle.GameGUI.CustomOutputStream;
+import java.awt. *;
+import javax.swing.*;
 
-import com.rpgbattle.Fighter;
-import com.rpgbattle.Warlock;
-import com.rpgbattle.Cleric;
-import com.rpgbattle.RedMage;
-import com.rpgbattle.UndeadBeast;
-import com.rpgbattle.Character;
 
 public class RPGFightGame {
     static int wavesDefeated = 0;
 
-    private static int getMenuChoice() {
-        Scanner input = new Scanner(System.in);
-        System.out.println("1. Add Fighter");
-        System.out.println("2. Add Warlock");
-        System.out.println("3. Add Cleric");
-        System.out.println("4. Add Red Mage");
-        System.out.print("Choice: ");
 
-        return input.nextInt();
+    private static int getMenuChoice() {
+        String[] options = {"Add Fighter", "Add Warlock", "Add Cleric", "Add Red Mage"};
+        int choice = JOptionPane.showOptionDialog(null, "Choose a character:", "Character Selection", JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE, null, options, options[0]);
+        return choice + 1;
     }
 
     public static void toStringAllies(Character[] allies) {
@@ -35,26 +29,34 @@ public class RPGFightGame {
     }
 
     public static void main(String[] args) {
+        GameGUI window = new GameGUI();
 
+        System.out.println("\t\tHello Player! \n \t        Welcome! To RPGFightGame! ");
         Character[] allies = new Character[4];
+
+        PrintStream printStream = new PrintStream(new CustomOutputStream(window.getTextArea()));
 
         for (int i = 0; i < allies.length; i++) {
             int choice = getMenuChoice();
             switch (choice) {
                 case 1 -> {
                     Fighter a = new Fighter();
+                    System.out.println("FIGHTER CHOSEN.");
                     allies[i] = a;
                 }
                 case 2 -> {
                     Warlock b = new Warlock();
+                    System.out.println("WARLOCK CHOSEN.");
                     allies[i] = b;
                 }
                 case 3 -> {
                     Cleric c = new Cleric();
+                    System.out.println("CLERIC CHOSEN.");
                     allies[i] = c;
                 }
                 case 4 -> {
                     RedMage d = new RedMage();
+                    System.out.println("RED MAGE CHOSEN.");
                     allies[i] = d;
                 }
             } // end switch
@@ -86,7 +88,7 @@ public class RPGFightGame {
                             break;
                         }
                     }
-                    //else System.out.printf("\n%s is dead and cannot move.", currentEnemy.getName()); 
+                    //else System.out.printf("\n%s is dead and cannot move.", currentEnemy.getName());
                 }
                 //toStringAllies(allies);
             } while (enemiesToKill);
@@ -158,4 +160,3 @@ public class RPGFightGame {
     }
 
 }
-
