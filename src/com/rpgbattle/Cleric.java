@@ -95,7 +95,10 @@ public class Cleric extends Character implements HealCaster {
             case 1 -> { // Fight
                 System.out.print("\nHere are the enemies to fight:");
                 for (int i = 0; i < enemies.length; i++)
-                    System.out.printf("%s (Enter %d to attack)", enemies[i].toString(), i + 1);
+                    if (enemies[i].getCurrentHP() > 0)
+                        System.out.printf("%s (Enter %d to attack)", enemies[i].toString(), i + 1);
+                    else
+                        System.out.printf("%s (DEAD)", enemies[i].toString());
                 System.out.print("\nWhich one do you want to fight?");
                 int en = input.nextInt() - 1;
                 attack(enemies[en]);
