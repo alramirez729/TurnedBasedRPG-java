@@ -55,6 +55,10 @@ public class RedMage extends Character implements DamageCaster, HealCaster {
             System.out.printf("\n%s casts Thunder on all enemies!", getName());
             setCurrentMP(getCurrentMP() - 20);
             for (Character currentEnemy : enemies) {
+                if (currentEnemy.getCurrentHP() == 0) {
+                    System.out.printf("\n%s is dead and cannot be attacked.", getName());
+                }
+
                 int thunder = (20 - (this.random.nextInt(4))) * getIntelligence();
                 currentEnemy.setCurrentHP(currentEnemy.getCurrentHP() - thunder);
                 System.out.printf("%s", currentEnemy);
