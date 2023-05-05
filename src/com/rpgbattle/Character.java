@@ -1,5 +1,7 @@
 package com.rpgbattle;
 
+import java.util.Arrays;
+import java.util.Objects;
 import java.util.Random;
 
 public abstract class Character {
@@ -75,8 +77,15 @@ public abstract class Character {
             options[1] = "Thunder";
         }
 
+        int real_length = 0;
+        for (String option : options) {
+            if (option != null) {
+                real_length++;
+            }
+        }
+
         int choice = 0;
-        while (choice < 1 || choice > options.length) {
+        while (choice < 1 || choice > real_length) {
             System.out.println("\nWhat would you like to do?");
             for (int i = 0; i < options.length; i++) {
                 if (options[i] == null) {
