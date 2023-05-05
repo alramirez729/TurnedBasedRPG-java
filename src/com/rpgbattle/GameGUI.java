@@ -55,12 +55,14 @@ public class GameGUI extends JFrame {
         GameGUI window = new GameGUI();
 
         // Run your RPG code here
-        System.out.println("\t\tHello Player! \n \t Welcome, to RPGFightGame! ");
+        // System.out.println("\t\tHello Player! \n \t Welcome, to RPGFightGame! ");
+
+        com.rpgbattle.RPGFightGame.main(args);
     }
 
     public static class CustomOutputStream extends OutputStream {
         private JTextArea textArea;
-        private long delay = 30; // delay in milliseconds
+        private long delay = 10; // delay in milliseconds
 
         public CustomOutputStream(JTextArea textArea) {
             this.textArea = textArea;

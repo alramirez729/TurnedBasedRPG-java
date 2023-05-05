@@ -87,7 +87,7 @@ public class Warlock extends Character implements DamageCaster {
         int choice = input.nextInt();
         switch (choice) {
             case 1 -> { // Fight
-                System.out.print("\nHere are the enemies to fight:");
+                System.out.print("\n\nHere are the enemies to fight:");
                 for (int i = 0; i < enemies.length; i++)
                     if (enemies[i].getCurrentHP() > 0)
                         System.out.printf("%s (Enter %d to attack)", enemies[i].toString(), i + 1);

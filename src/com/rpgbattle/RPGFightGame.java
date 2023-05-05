@@ -6,6 +6,15 @@ import java.util.Scanner;
 import com.rpgbattle.GameGUI.CustomOutputStream;
 import java.awt. *;
 import javax.swing.*;
+import com.rpgbattle.GameGUI;
+import com.rpgbattle.Character;
+import com.rpgbattle.DamageCaster;
+import com.rpgbattle.HealCaster;
+import com.rpgbattle.Fighter;
+import com.rpgbattle.Cleric;
+import com.rpgbattle.UndeadBeast;
+import com.rpgbattle.RedMage;
+import com.rpgbattle.Warlock;
 
 
 public class RPGFightGame {
@@ -24,7 +33,7 @@ public class RPGFightGame {
     }
 
     public static void toStringEnemies(Character[] enemies) {
-        System.out.print("\nEnemies:");
+        System.out.print("\n\nEnemies:");
         for (Character enemy : enemies) System.out.printf("%s", enemy.toString());
     }
 
@@ -135,15 +144,15 @@ public class RPGFightGame {
         return enemies;
     }
 
-    public static boolean didPlayerSurvive(Character[] allies) {
-        for (Character currentAlly : allies) {
+    public static boolean didPlayerSurvive(com.rpgbattle.Character[] allies) {
+        for (com.rpgbattle.Character currentAlly : allies) {
             if (currentAlly.getCurrentHP() != 0) return false;
         }
         return true;
     }
 
-    public static boolean didEnemiesSurvive(Character[] enemies) {
-        for (Character currentEnemy : enemies) {
+    public static boolean didEnemiesSurvive(com.rpgbattle.Character[] enemies) {
+        for (com.rpgbattle.Character currentEnemy : enemies) {
             if (currentEnemy.getCurrentHP() != 0) return false;
         }
         return true;
