@@ -121,6 +121,12 @@ public class RedMage extends Character implements DamageCaster, HealCaster {
                         System.out.printf("%s (DEAD)", enemies[i].toString());
                 System.out.print("\nWhich one do you want to fight?");
                 int en = input.nextInt() - 1;
+
+                while (en < 0 || en >= enemies.length || enemies[en].getCurrentHP() <= 0) {
+                    System.out.print("\nInvalid choice. Try again: ");
+                    en = input.nextInt() - 1;
+                }
+
                 attack(enemies[en]);
             }
             case 2 -> thunder(enemies);
