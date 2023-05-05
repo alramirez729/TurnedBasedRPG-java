@@ -66,7 +66,6 @@ public class RedMage extends Character implements DamageCaster, HealCaster {
         } else {
             System.out.printf("\n%s needs 20 MP to cast Thunder!", getName());
         }
-        System.out.println();
     }
 
     @Override
@@ -103,35 +102,4 @@ public class RedMage extends Character implements DamageCaster, HealCaster {
         return String.format("\n%s: %s, %d/%d MP max", getName(), super.toString(), getCurrentMP(), getMaxMP());
     }
 
-    @Override
-    public void move(Character[] allies, Character[] enemies) {
-        Scanner input = new Scanner(System.in);
-        System.out.println("\n1. Fight");
-        System.out.println("2. Thunder");
-        System.out.println("3. Heal");
-        System.out.print("Choice: ");
-        int choice = input.nextInt();
-        switch (choice) {
-            case 1 -> { // Fight
-                System.out.print("\n\nHere are the enemies to fight:");
-                for (int i = 0; i < enemies.length; i++)
-                    if (enemies[i].getCurrentHP() != 0)
-                        System.out.printf("%s (Enter %d to attack)", enemies[i].toString(), i + 1);
-                    else
-                        System.out.printf("%s (DEAD)", enemies[i].toString());
-                System.out.print("\nWhich one do you want to fight?");
-                int en = input.nextInt() - 1;
-
-                while (en < 0 || en >= enemies.length || enemies[en].getCurrentHP() <= 0) {
-                    System.out.print("\nInvalid choice. Try again: ");
-                    en = input.nextInt() - 1;
-                }
-
-                attack(enemies[en]);
-            }
-            case 2 -> thunder(enemies);
-            case 3 -> heal(allies);
-        } // end switch
-    }
-
-} // end class 
+} // end class

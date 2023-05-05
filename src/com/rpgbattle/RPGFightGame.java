@@ -79,7 +79,7 @@ public class RPGFightGame {
             do {
                 for (Character currentAlly : allies) {
                     if (currentAlly.getCurrentHP() != 0) {
-                        System.out.printf("%s (choose a move)", currentAlly);
+                        System.out.printf("\n\nCurrent Character: %s", currentAlly.getName());
                         currentAlly.move(allies, enemies);
                         if ((didEnemiesSurvive(enemies))) {
                             playerDefeatedAWave();
@@ -160,7 +160,7 @@ public class RPGFightGame {
 
     public static void playerDefeatedAWave() {
         wavesDefeated++;
-        System.out.printf("\nCongratulations! You defeated %d waves of enemies so far.", wavesDefeated);
+        System.out.printf("\nCongratulations! You defeated %d waves of enemies so far.\n", wavesDefeated);
     }
 
     public static void playerLost() {
