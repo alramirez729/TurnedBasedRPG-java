@@ -49,7 +49,11 @@ public abstract class Character {
         this.strength = strength;
     }
 
-    public abstract void attack(Character d);
+    public void attack(Character d) {
+        int hit = (10 - (this.random.nextInt(4))) * getStrength();
+        d.setCurrentHP(d.getCurrentHP() - hit);
+        System.out.printf("\n%s attacks %s for %d damage!", getName(), d.getName(), hit);
+    }
 
     public boolean isDead() {
         return getCurrentHP() == 0;
