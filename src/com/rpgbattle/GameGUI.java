@@ -51,14 +51,6 @@ public class GameGUI extends JFrame {
         return textArea;
     }
 
-    public static void main(String[] args) {
-        GameGUI window = new GameGUI();
-
-        // Run your RPG code here
-        // System.out.println("\t\tHello Player! \n \t Welcome, to RPGFightGame! ");
-
-        com.rpgbattle.RPGFightGame.main(args);
-    }
 
     public static class CustomOutputStream extends OutputStream {
         private JTextArea textArea;
