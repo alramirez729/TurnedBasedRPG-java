@@ -2,39 +2,38 @@ package com.rpgbattle;
 
 import java.io.PrintStream;
 import java.util.Random;
-import java.util.Scanner;
-import com.rpgbattle.GameGUI.CustomOutputStream;
-import java.awt. *;
-import javax.swing.*;
-import com.rpgbattle.GameGUI;
-import com.rpgbattle.Character;
-import com.rpgbattle.DamageCaster;
-import com.rpgbattle.HealCaster;
-import com.rpgbattle.Fighter;
-import com.rpgbattle.Cleric;
-import com.rpgbattle.UndeadBeast;
-import com.rpgbattle.RedMage;
-import com.rpgbattle.Warlock;
-
+import javax.swing.JOptionPane;
 
 public class RPGFightGame {
     static int wavesDefeated = 0;
 
-
     private static int getMenuChoice() {
         String[] options = {"Add Fighter", "Add Warlock", "Add Cleric", "Add Red Mage"};
-        int choice = JOptionPane.showOptionDialog(null, "Choose a character:", "Character Selection", JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE, null, options, options[0]);
+        int choice = JOptionPane.showOptionDialog(
+                null,
+                "Choose a character:",
+                "Character Selection",
+                JOptionPane.DEFAULT_OPTION,
+                JOptionPane.PLAIN_MESSAGE,
+                null,
+                options,
+                options[0]
+        );
         return choice + 1;
     }
 
     public static void toStringAllies(Character[] allies) {
         System.out.print("\nAllies:");
-        for (Character ally : allies) System.out.printf("%s", ally.toString());
+        for (Character ally : allies) {
+            System.out.printf("%s", ally.toString());
+        }
     }
 
     public static void toStringEnemies(Character[] enemies) {
         System.out.print("\n\nEnemies:");
-        for (Character enemy : enemies) System.out.printf("%s", enemy.toString());
+        for (Character enemy : enemies) {
+            System.out.printf("%s", enemy.toString());
+        }
     }
 
     public static void main(String[] args) {
@@ -43,33 +42,39 @@ public class RPGFightGame {
         System.out.println("\t\tHello Player! \n \t        Welcome! To RPGFightGame! ");
         Character[] allies = new Character[4];
 
-        PrintStream printStream = new PrintStream(new CustomOutputStream(window.getTextArea()));
+        PrintStream printStream = new PrintStream(new GameGUI.CustomOutputStream(window.getTextArea()));
 
         for (int i = 0; i < allies.length; i++) {
             int choice = getMenuChoice();
-            switch (choice) {
-                case 1 -> {
-                    Fighter a = new Fighter();
-                    System.out.println("FIGHTER CHOSEN.");
-                    allies[i] = a;
-                }
-                case 2 -> {
-                    Warlock b = new Warlock();
-                    System.out.println("WARLOCK CHOSEN.");
-                    allies[i] = b;
-                }
-                case 3 -> {
-                    Cleric c = new Cleric();
-                    System.out.println("CLERIC CHOSEN.");
-                    allies[i] = c;
-                }
-                case 4 -> {
-                    RedMage d = new RedMage();
-                    System.out.println("RED MAGE CHOSEN.");
-                    allies[i] = d;
-                }
-            } // end switch
+            while(choice == 0)
+            {
+                choice = getMenuChoice();
+            }
+                switch (choice) {
+                    case 1:
+                        Fighter a = new Fighter();
+                        System.out.println("FIGHTER CHOSEN.");
+                        allies[i] = a;
+                        break;
+                    case 2:
+                        Warlock b = new Warlock();
+                        System.out.println("WARLOCK CHOSEN.");
+                        allies[i] = b;
+                        break;
+                    case 3:
+                        Cleric c = new Cleric();
+                        System.out.println("CLERIC CHOSEN.");
+                        allies[i] = c;
+                        break;
+                    case 4:
+                        RedMage d = new RedMage();
+                        System.out.println("RED MAGE CHOSEN.");
+                        allies[i] = d;
+                        break;
+
+            }
         }
+
         boolean playerAlive = true;
         do {
             toStringAllies(allies);
