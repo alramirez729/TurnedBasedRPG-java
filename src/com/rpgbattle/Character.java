@@ -3,6 +3,7 @@ package com.rpgbattle;
 import java.util.Arrays;
 import java.util.Objects;
 import java.util.Random;
+import com.rpgbattle.GameGUI;
 
 public abstract class Character {
     protected final Random random;
@@ -94,7 +95,7 @@ public abstract class Character {
 
                 System.out.printf("%d. %s\n", i + 1, options[i]);
             }
-            choice = new java.util.Scanner(System.in).nextInt();
+            choice = GameGUI.getUserInputAsInt("Enter your choice:");
         }
 
         String option =  options[choice - 1].toLowerCase();
@@ -111,7 +112,7 @@ public abstract class Character {
                     }
                 }
                 while (enemy == null) {
-                    int en = new java.util.Scanner(System.in).nextInt() - 1;
+                    int en = GameGUI.getUserInputAsInt("Enter your choice:") - 1;
                     if (en >= 0 && en < enemies.length && enemies[en].getCurrentHP() > 0) {
                         enemy = enemies[en];
                     } else {
